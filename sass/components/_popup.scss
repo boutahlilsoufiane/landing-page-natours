@@ -1,126 +1,127 @@
 .popup {
-    width: 100%;
-    height: 100vh;
-    background-color: rgba($color-black, .7);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9999;
+  width: 100%;
+  height: 100vh;
+  background: rgba(232, 229, 229, -0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+
+  &__content {
+    @include center;
+    height: 61%;
+    width: 70%;
+    border-radius: 3px;
+    background-color: #fff;
+    display: table;
     opacity: 0;
-    visibility: hidden;
-    transition: all .3s;
+    transform: translate(-50%, -50%) scale(0.2);
+    transition: all 0.3s 0.2s;
 
-    &__content {
-        @include center;
-        height: 61%;
-        width: 70%;
-        border-radius: 3px;
-        background-color: #fff;
-        display: table;
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(.2);
-        transition: all .3s .2s;
-
-        @include respond(tab-lan) {
-            width: 89%;
-        }
-
-        @include respond(tab-por) {
-            display: block;
-            height: 91%;
-        }
-
-        @include respond(phone) {
-            height: 75%;
-        }
+    @include respond(tab-lan) {
+      width: 89%;
     }
 
-    &__close:visited,
-    &__close:link {
-        position: absolute;
-        top: 0rem;
-        height: 1rem;
-        right: 2rem;
-        color: $color-grey-dark-2;
-        font-size: 3rem;
-        text-decoration: none;
+    @include respond(tab-por) {
+      display: block;
+      height: 91%;
     }
 
-    &__close:hover {
-        color: $color-primary;
+    @include respond(phone) {
+      height: 75%;
     }
+  }
 
-    &:target {
-        opacity: 1;
-        visibility: visible;
+  &__close:visited,
+  &__close:link {
+    position: absolute;
+    top: 0rem;
+    height: 1rem;
+    right: 2rem;
+    color: $color-grey-dark-2;
+    font-size: 3rem;
+    text-decoration: none;
+  }
+
+  &__close:hover {
+    color: $color-primary;
+  }
+
+  &:target {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:target &__content {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  &__left,
+  &__right {
+    @include respond(tab-por) {
+      width: 100%;
+      height: 50%;
+      display: block;
     }
+  }
 
-    &:target &__content {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
+  &__left {
+    overflow: hidden;
+    width: 33%;
+    display: table-cell;
+
+    @include respond(phone) {
+      height: 30%;
+      width: 100%;
+      display: block;
     }
+  }
 
-    &__left,
-    &__right {
-        @include respond(tab-por) {
-            width: 100%;
-            height: 50%;
-            display: block;
-        }
+  &__right {
+    width: 67%;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 1rem 4rem;
+
+    @include respond(phone) {
+      height: 70%;
+      width: 100%;
+      display: block;
     }
+  }
 
-    &__left {
-        overflow: hidden;
-        width: 33%;
-        display: table-cell;
+  &__img {
+    width: 100%;
+    height: 23%;
+    display: block;
 
-        @include respond(phone) {
-            height: 30%;
-            width: 100%;
-            display: block;
-        }
+    @include respond(tab-por) {
+      width: 50%;
+      height: 100%;
     }
+  }
 
-    &__right {
-        width: 67%;
-        display: table-cell;
-        vertical-align: middle;
-        padding: 1rem 4rem;
-
-        @include respond(phone) {
-            height: 70%;
-            width: 100%;
-            display: block;
-        }
+  &__left > &__img {
+    @include respond(tab-por) {
+      float: left;
     }
+  }
 
-
-    &__img {
-        width: 100%;
-        height: 23%;
-        display: block;
-
-        @include respond(tab-por) {
-            width: 50%;
-            height: 100%;
-        }
-    }
-
-    &__left>&__img {
-        @include respond(tab-por) {
-            float: left;
-        }
-    }
-
-    &__text {
-        font-size: 1.4rem;
-        margin-bottom: 4rem;
-        column-count: 2;
-        column-gap: 2rem;
-        column-rule: 1px solid $color-grey-light-2;
-        hyphens: auto;
-        -moz-hyphens: auto;
-        -ms-hyphens: auto;
-        -webkit-hyphens: auto;
-    }
+  &__text {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+    column-count: 2;
+    column-gap: 2rem;
+    column-rule: 1px solid $color-grey-light-2;
+    hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+  }
 }
